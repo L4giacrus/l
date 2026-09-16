@@ -1,0 +1,28 @@
+import { useState } from "react";
+
+function App() {
+  const [secreto] = useState(Math.floor(Math.random() * 100) + 1);
+  const [numero, setNumero] = useState("");
+  const [msg, setMsg] = useState("");
+  const [tentativas, setTentativas] = useState(0);
+
+  function jogar() {
+    setTentativas(tentativas + 1);
+
+    if (Number(numero) > secreto) setMsg("Muito alto");
+    else if (Number(numero) < secreto) setMsg("Muito baixo");
+    else setMsg("Acertou");
+  }
+
+  return (
+    <>
+      <input onChange={(e) => setNumero(e.target.value)} />
+      <button onClick={jogar}>Jogar</button>
+
+      <p>{msg}</p>
+      <p>Tentativas: {tentativas}</p>
+    </>
+  );
+}
+
+export default App;

@@ -1,0 +1,36 @@
+import { useState } from "react";
+
+function App() {
+  const opcoes = ["Pedra", "Papel", "Tesoura"];
+  const [msg, setMsg] = useState("");
+  const [placar, setPlacar] = useState(0);
+
+  function jogar(jogador) {
+    const pc = opcoes[Math.floor(Math.random() * 3)];
+
+    if (jogador == pc) setMsg("Empate!");
+    else if (
+      (jogador == "Pedra" && pc == "Tesoura") ||
+      (jogador == "Papel" && pc == "Pedra") ||
+      (jogador == "Tesoura" && pc == "Papel")
+    ) {
+      setMsg("Você ganhou!");
+      setPlacar(placar + 1);
+    } else {
+      setMsg("Você perdeu!");
+    }
+  }
+
+  return (
+    <>
+      <button onClick={() => jogar("Pedra")}>Pedra</button>
+      <button onClick={() => jogar("Papel")}>Papel</button>
+      <button onClick={() => jogar("Tesoura")}>Tesoura</button>
+
+      <p>{msg}</p>
+      <p>Placar: {placar}</p>
+    </>
+  );
+}
+
+export default App;

@@ -1,0 +1,35 @@
+import { useState } from "react";
+
+function App() {
+  const [a, setA] = useState("");
+  const [b, setB] = useState("");
+  const [r, setR] = useState({});
+
+  function calcular() {
+    const x = Number(a);
+    const y = Number(b);
+
+    setR({
+      soma: x + y,
+      sub: x - y,
+      mult: x * y,
+      div: x / y
+    });
+  }
+
+  return (
+    <>
+      <input onChange={(e) => setA(e.target.value)} />
+      <input onChange={(e) => setB(e.target.value)} />
+
+      <button onClick={calcular}>Calcular</button>
+
+      <p>Soma: {r.soma}</p>
+      <p>Subtração: {r.sub}</p>
+      <p>Multiplicação: {r.mult}</p>
+      <p>Divisão: {r.div}</p>
+    </>
+  );
+}
+
+export default App;
